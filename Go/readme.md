@@ -9,7 +9,7 @@ Gutendex Go REST API is a backend service designed to support Gutendex Frontend,
 This code was developed by:
 - Torgrim Thorsen [@SirAlexiner](https://github.com/SirAlexiner)
 
-The project is hosted on [Render]()
+The project is hosted on [Render](https://gutendexapi.onrender.com/)
 
 ## Features
 - Provides endpoints for accessing data utilized by Gutendex Frontend.

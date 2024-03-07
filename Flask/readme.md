@@ -9,7 +9,7 @@ Gutendex Frontend is a web application demonstrating the utilization of a REST A
 This code was developed by:
 - Torgrim Thorsen [@SirAlexiner](https://github.com/SirAlexiner)
 
-The project is hosted on [Render]()
+The project is hosted on [Render](https://gutendex.onrender.com/)
 
 
 ## Features
