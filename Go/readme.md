@@ -100,7 +100,7 @@ Contributions to the Gutendex REST API are welcome! To contribute, follow these 
 5. Push your changes to your forked repository.
 6. Submit a pull request to the original repository, explaining your changes and their significance.
 
-Please adhere to the project's code of conduct and contribution guidelines provided in the `../readme/conduct.md` and `../readme/contribute.md` files, respectively.
+Please adhere to the project's code of conduct and contribution guidelines provided in the [`../readme/conduct.md`](../readme/conduct.md) and [`../readme/contribute.md`](../readme/contribute.md) files, respectively.
 
 ## License
 This project is licensed under:
