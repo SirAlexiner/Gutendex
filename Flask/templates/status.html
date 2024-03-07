@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gutendex Lookup</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.ico') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="menu">
+            <ul>
+                <li>
+                    <h3><i class="fa fa-book"></i> Library</h3>
+                </li>
+                <ul>
+                    <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                </ul>
+                <li>
+                    <h3><i class="fa fa-line-chart"></i> Statistcs</h3>
+                </li>
+                <ul>
+                    <li><a href="/bookcount"><i class="fa fa-database"></i> Book Count</a></li>
+                    <li><a href="/readership"><i class="fa fa-eye"></i> Readership</a></li>
+                    <li><a href="/status"><i class="fa fa-stethoscope" aria-hidden="true"></i> Status</a></li>
+                </ul>
+            </ul>
+        </div>
+        <div class="menu-button">
+            <a class="open-close-menu"><i class="fa fa-bars"></i></a>
+        </div>
+    </div>
+    <div class="master">
+        <div class="header">
+            <div class="logo-container">
+                <a href="/"><img src="{{ url_for('static', filename='logo.png')  }}"></a>
+            </div>
+        </div>
+        <div class="status">
+            <p>Gutendex API: <span class="endpoint">{{ status.gutendexapi }}</span></p>
+            <p>Language API: <span class="endpoint">{{ status.languageapi }}</span></p>
+            <p>Countries API: <span class="endpoint">{{ status.countriesapi }}</span></p>
+            <p>Version: <span>{{ status.version }}</span></p>
+            <p>Uptime: <span>{{ status.uptime }}</span></p>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

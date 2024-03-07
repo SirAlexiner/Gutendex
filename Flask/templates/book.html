@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gutendex Lookup</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.ico') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        @media screen and (max-width: 450px) {
+            .container {
+                width: 80% !important;
+                margin-left: 5% !important;
+                margin-right: 5% !important;
+                text-align: justify;
+                display: block !important;
+                overflow-y: auto;
+                overflow-x: hidden !important;
+            }
+        }
+
+        .container {
+            width: 60%;
+            margin-left: 20%;
+            margin-right: 20%;
+            text-align: justify;
+            display: block !important;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .container h1,
+        .container h2,
+        .container h3,
+        .container h4,
+        .container h5 {
+            text-align: center;
+            font-style: normal;
+            font-weight: normal;
+            line-height: 1.5;
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .container h1 {
+            font-size: 300%;
+            margin-top: 0.6em;
+            margin-bottom: 0.6em;
+            letter-spacing: 0.12em;
+            word-spacing: 0.2em;
+            text-indent: 0;
+        }
+
+        .container h2 {
+            font-size: 150%;
+            margin-top: 2em;
+            margin-bottom: 1em;
+        }
+
+        .container h3 {
+            font-size: 130%;
+            margin-top: 1em;
+        }
+
+        .container h4 {
+            font-size: 120%;
+        }
+
+        .container h5 {
+            font-size: 110%;
+        }
+
+        .container .no-break {
+            page-break-before: avoid;
+        }
+
+        .container div.chapter {
+            page-break-before: always;
+            margin-top: 4em;
+        }
+
+        .container hr {
+            width: 80%;
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+
+        .container p {
+            text-indent: 1em;
+            margin-top: 0.25em;
+            margin-bottom: 0.25em;
+        }
+
+        .container p.poem {
+            text-indent: 0%;
+            margin-left: 10%;
+            font-size: 90%;
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+
+        .container p.letter {
+            text-indent: 0%;
+            margin-top: 1.5em;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+
+        .container p.letter2 {
+            text-align: center;
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+
+        .container p.right {
+            text-align: right;
+            margin-right: 10%;
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+
+        .container p.noindent {
+            text-indent: 0%;
+        }
+
+        .container a:link,
+        .container a:visited {
+            color: blue;
+            text-decoration: none;
+        }
+
+        .container a:hover {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="menu">
+            <ul>
+                <li>
+                    <h3><i class="fa fa-book"></i> Library</h3>
+                </li>
+                <ul>
+                    <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                </ul>
+                <li>
+                    <h3><i class="fa fa-line-chart"></i> Statistcs</h3>
+                </li>
+                <ul>
+                    <li><a href="/bookcount"><i class="fa fa-database"></i> Book Count</a></li>
+                    <li><a href="/readership"><i class="fa fa-eye"></i> Readership</a></li>
+                    <li><a href="/status"><i class="fa fa-stethoscope"></i> Status</a></li>
+                </ul>
+            </ul>
+        </div>
+        <div class="menu-button">
+            <a class="open-close-menu"><i class="fa fa-bars"></i></a>
+        </div>
+    </div>
+    <div class="master">
+        <div class="header">
+            <div class="logo-container">
+                <a href="/"><img src="{{ url_for('static', filename='logo.png')  }}"></a>
+            </div>
+        </div>
+        <div class="container">
+            {{ body_content | safe }}
+        </div>
+        <div class="fixed-buttons">
+            <a class="button previous-button" href="javascript:history.back()"><i class="fa fa-arrow-left"
+                    aria-hidden="true"></i></a>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
