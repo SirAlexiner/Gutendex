@@ -21,17 +21,17 @@
                 <li>
                     <h3><i class="fa fa-book"></i> Library</h3>
                 </li>
-                <ul>
-                    <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
-                </ul>
+                <li>
+                    <h3><a href="/"><i class="fa fa-home"></i> Home</a></h3>
+                </li>
                 <li>
                     <h3><i class="fa fa-line-chart"></i> Statistcs</h3>
                 </li>
-                <ul>
-                    <li><a href="/bookcount"><i class="fa fa-database"></i> Book Count</a></li>
-                    <li><a href="//readership/en"><i class="fa fa-eye"></i> Readership</a></li>
-                    <li><a href="/status"><i class="fa fa-stethoscope"></i> Status</a></li>
-                </ul>
+                <li>
+                    <h3><a href="/bookcount"><i class="fa fa-database"></i> Book Count</a></h3>
+                    <h3><a href="/readership"><i class="fa fa-eye"></i> Readership</a></h3>
+                    <h3><a href="/status"><i class="fa fa-stethoscope"></i> Status</a></h3>
+                </li>
             </ul>
         </div>
         <div class="menu-button">
@@ -41,13 +41,13 @@
     <div class="master">
         <div class="header">
             <div class="logo-container">
-                <a href="/"><img src="{{ url_for('static', filename='logo.png')  }}"></a>
+                <a href="/"><img src="{{ url_for('static', filename='logo.png')  }}" alt="A Stylised G for Gutendex"></a>
             </div>
         </div>
         <div class="bc-container">
             <div class="bc-search">
                 <div class="search-container">
-                    <select id="language-select-readership">
+                    <label for="language-select-readership"></label><select id="language-select-readership">
                         {% for lang in support_languages %}
                         {% if lang.two_letter in language %}
                         <option value="{{ lang.two_letter }}" selected>{{ lang.name }}</option>
@@ -57,9 +57,9 @@
                         {% endfor %}
                     </select>
                     {% if limit %}
-                    <input type="number" id="number-input-readership" placeholder="Limit" value="{{ limit }}">
+                    <label for="number-input-readership"></label><input type="number" id="number-input-readership" placeholder="Limit" value="{{ limit }}">
                     {% else %}
-                    <input type="number" id="number-input-readership" placeholder="Limit">
+                    <label for="number-input-readership"></label><input type="number" id="number-input-readership" placeholder="Limit">
                     {% endif %}
                     <button id="search-button-readership"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>

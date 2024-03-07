@@ -1,4 +1,4 @@
-# Contributing to Texas Hold'em Game
+# Contributing to Gutendex
 Thank you for considering contributing to the project! We welcome any contributions that align with our project's purpose and goals.
 
 ## Code of Conduct

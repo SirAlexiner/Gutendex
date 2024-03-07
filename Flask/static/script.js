@@ -3,8 +3,8 @@ $(document).ready(function () {
     retrieve language and search query
     go to the constructed href */
     function handleSearch() {
-        var language = $('#language-select').val();
-        var searchQuery = $('#search-input').val();
+        let language = $('#language-select').val();
+        let searchQuery = $('#search-input').val();
         window.location.href = '/?languages=' + language + '&search=' + searchQuery;
     }
 
@@ -37,9 +37,9 @@ $(document).ready(function () {
     go to the constructed href.
     If limit is empty don't include it */
     function handleReadershipSearch() {
-        var language = $('#language-select-readership').val();
-        var limit = $('#number-input-readership').val();
-        if (limit != "") {
+        let language = $('#language-select-readership').val();
+        let limit = $('#number-input-readership').val();
+        if (limit !== "") {
             window.location.href = '/readership/' + language + '/?limit=' + limit;
         } else {
             window.location.href = '/readership/' + language;
@@ -63,7 +63,7 @@ $(document).ready(function () {
     retrieve language query
     go to the constructed href. */
     function handleBookcountSearch() {
-        var language = $('#language-select-bc').val();
+        let language = $('#language-select-bc').val();
         window.location.href = '/bookcount?languages=' + language;
     }
 
@@ -133,12 +133,12 @@ $(document).ready(function () {
     // Loop through each endpoint status span element
     $('.endpoint').each(function () {
         // Extract status code and status text from the text content
-        var status = $(this).text().trim();
-        var parts = status.split(' ');
-        var statusCode = parts[0];
+        let status = $(this).text().trim();
+        let parts = status.split(' ');
+        let statusCode = parts[0];
 
         // Get category based on status code
-        var category = categorizeStatusCode(statusCode);
+        let category = categorizeStatusCode(statusCode);
 
         // Add category class to the endpoint element
         $(this).addClass(category);
@@ -149,10 +149,10 @@ $(document).ready(function () {
 
     // Update the select option text based on selected languages
     $('#language-select').change(function () {
-        var selectedLanguages = $(this).val();
-        var selectLanguageOption = $('#select-language-option');
+        let selectedLanguages = $(this).val();
+        let selectLanguageOption = $('#select-language-option');
         if (selectedLanguages && selectedLanguages.length > 0) {
-            var languageNames = selectedLanguages.map(function (lang) {
+            let languageNames = selectedLanguages.map(function (lang) {
                 return $('#language-select option[value="' + lang + '"]').val();
             }).join(',');
             selectLanguageOption.text(languageNames);
@@ -162,10 +162,10 @@ $(document).ready(function () {
     });
 
     $('#language-select-bc').change(function () {
-        var selectedLanguages = $(this).val();
-        var selectLanguageOption = $('#select-language-option');
+        let selectedLanguages = $(this).val();
+        let selectLanguageOption = $('#select-language-option');
         if (selectedLanguages && selectedLanguages.length > 0) {
-            var languageNames = selectedLanguages.map(function (lang) {
+            let languageNames = selectedLanguages.map(function (lang) {
                 return $('#language-select-bc option[value="' + lang + '"]').val();
             }).join(',');
             selectLanguageOption.text(languageNames);

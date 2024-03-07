@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"gutendex_api/internal/utils/structs"
 	"io"
@@ -91,8 +92,11 @@ func cachePages(languageCode, cacheDir string) {
 func loopPaginationPages(languageCode string, languageDir string) {
 	page := 1
 	for {
+		// Construct filename
 		filename := getPageFilename(languageDir, page)
+		// Does the file exist and is it younger than a week old.
 		if fileExistsAndRecent(filename) {
+			// Is there a next page.
 			if nextPageExists(filename) {
 				page++
 				continue
@@ -101,31 +105,51 @@ func loopPaginationPages(languageCode string, languageDir string) {
 			}
 		}
 
-		apiUrl := buildAPIURL(languageCode, page)
-		resp, err := fetchAPIResponse(apiUrl)
-		if err != nil {
-			log.Printf("Error fetching page for language %s, page %d: %v\n", languageCode, page, err)
-			continue
+		// Fetch the json for the page and save it.
+		if err := fetchAndSavePage(languageCode, page, filename); err != nil {
+			log.Printf("Error processing page for language %s, page %d: %v\n", languageCode, page, err)
+			return
 		}
 
-		if resp.StatusCode != http.StatusOK {
-			log.Printf("Endpoint responded with not OK for language %s, page %d\n", languageCode, page)
-			resp.Body.Close()
-			break
-		}
-
-		if err := saveResponseToFile(resp, filename); err != nil {
-			handleFileSaveError(languageCode, page, filename, err)
-			resp.Body.Close()
-			continue
-		}
-
-		resp.Body.Close()
+		// Break if there is no next page.
 		if !nextPageExists(filename) {
 			break
 		}
+		// increment page counter if there is a next page.
 		page++
 	}
+}
+
+// fetchAndSavePage retrieves the json for the language and page and saves it to the filename.
+func fetchAndSavePage(languageCode string, page int, filename string) error {
+	// Construct the API URL.
+	apiUrl := buildAPIURL(languageCode, page)
+	// Retrieve the API response.
+	resp, err := fetchAPIResponse(apiUrl)
+	if err != nil {
+		log.Printf("Error fetching page for language %s, page %d: %v\n", languageCode, page, err)
+		return err
+	}
+	err = resp.Body.Close()
+	if err != nil {
+		log.Printf("Error closing body for page for language %s, page %d: %v\n", languageCode, page, err)
+		return err
+	}
+
+	// Confirm the API returned Status OK.
+	if resp.StatusCode != http.StatusOK {
+		log.Printf("Endpoint responded with not OK for language %s, page %d\n", languageCode, page)
+		return errors.New("non-OK status code")
+	}
+
+	// Save the response json to filename.
+	if err := saveResponseToFile(resp, filename); err != nil {
+		// Handle errors with saving the json to file.
+		handleFileSaveError(languageCode, page, filename, err)
+		return err
+	}
+
+	return nil
 }
 
 // getPageFilename returns the filename for a given language and page number.
@@ -133,7 +157,7 @@ func getPageFilename(languageDir string, page int) string {
 	return filepath.Join(languageDir, fmt.Sprintf("page_%d.json", page))
 }
 
-// fileExistsAndRecent checks if a file exists and is no older than a week.
+// fileExistsAndRecent checks if a file exists and is not older than a week.
 func fileExistsAndRecent(filename string) bool {
 	stat, err := os.Stat(filename)
 	return err == nil && time.Since(stat.ModTime()) < 7*24*time.Hour
