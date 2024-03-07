@@ -401,6 +401,16 @@ body {
     border-radius: 10px;
 }
 
+.book:hover .overlay {
+    display: flex;
+    cursor: pointer;
+}
+
+.overlay i {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 2.5em;
+}
+
 .book.move {
     opacity: 0.25
 }
