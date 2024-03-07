@@ -130,11 +130,6 @@ func fetchAndSavePage(languageCode string, page int, filename string) error {
 		log.Printf("Error fetching page for language %s, page %d: %v\n", languageCode, page, err)
 		return err
 	}
-	err = resp.Body.Close()
-	if err != nil {
-		log.Printf("Error closing body for page for language %s, page %d: %v\n", languageCode, page, err)
-		return err
-	}
 
 	// Confirm the API returned Status OK.
 	if resp.StatusCode != http.StatusOK {
@@ -146,6 +141,12 @@ func fetchAndSavePage(languageCode string, page int, filename string) error {
 	if err := saveResponseToFile(resp, filename); err != nil {
 		// Handle errors with saving the json to file.
 		handleFileSaveError(languageCode, page, filename, err)
+		return err
+	}
+
+	err = resp.Body.Close()
+	if err != nil {
+		log.Printf("Error closing body for page for language %s, page %d: %v\n", languageCode, page, err)
 		return err
 	}
 
