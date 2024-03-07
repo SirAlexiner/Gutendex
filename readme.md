@@ -18,8 +18,8 @@ Gutendex is a school project aimed at showcasing the integration of a REST API w
 
 For detailed information about the Go REST API and Python Flask Web Server components, please refer to their respective README files in the repository.
 
-- For information about the Go REST API, please see the README located here [`Go/readme.md`](Go/readme.md).
-- For information about the Python Flask Web Server, please see the README located here: [`Flask/readme.md`](Flask/readme.md).
+- For information about the Go REST API, please see the README located here [`Go`](Go).
+- For information about the Python Flask Web Server, please see the README located here: [`Flask`](Flask).
 
 Feel free to explore the repository for more details and to get started with Gutendex!
 
